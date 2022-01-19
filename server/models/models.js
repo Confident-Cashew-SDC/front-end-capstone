@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../../client/src/config/config');
+const host = 'http://localhost:3000'
 
 module.exports = {
   getAllProducts: () => axios.get(
@@ -62,28 +63,28 @@ module.exports = {
     },
   ),
   listQuestions: (req) => axios.get(
-    'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions',
+    `${host}/qa/questions`,
     {
       params: req,
       headers: { Authorization: config.API_KEY },
     },
   ),
   listAnswers: (req) => axios.get(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${req.query.question_id}/answers`,
+    `${host}/qa/questions/${req.query.question_id}/answers`,
     {
       params: req.query,
       headers: { Authorization: config.API_KEY },
     },
   ),
   postQuestion: (req) => axios.post(
-    'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions',
+    `${host}/qa/questions`,
     req.body,
     {
       headers: { Authorization: config.API_KEY },
     },
   ),
   postAnswer: (req) => axios.post(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${req.body.question_id}/answers`,
+    `${host}/qa/questions/${req.body.question_id}/answers`,
     req.body,
     {
       headers: { Authorization: config.API_KEY },
